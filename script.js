@@ -33,20 +33,20 @@ class CoinSoundFX {
         
         // Pitch sweep to simulate the spinning sound (rapid pitch modulation)
         osc.frequency.setValueAtTime(400, now);
-        osc.frequency.exponentialRampToValueAtTime(800, now + 0.15);
-        osc.frequency.exponentialRampToValueAtTime(300, now + 0.4);
-        osc.frequency.exponentialRampToValueAtTime(700, now + 0.65);
-        osc.frequency.exponentialRampToValueAtTime(250, now + 0.9);
-        osc.frequency.exponentialRampToValueAtTime(600, now + 1.15);
-        osc.frequency.exponentialRampToValueAtTime(200, now + 1.4);
+        osc.frequency.exponentialRampToValueAtTime(800, now + 0.10);
+        osc.frequency.exponentialRampToValueAtTime(300, now + 0.22);
+        osc.frequency.exponentialRampToValueAtTime(700, now + 0.35);
+        osc.frequency.exponentialRampToValueAtTime(250, now + 0.48);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.62);
+        osc.frequency.exponentialRampToValueAtTime(200, now + 0.75);
 
         // Create filter for a warmer metallic sound
         const filter = ctx.createBiquadFilter();
         filter.type = 'bandpass';
         filter.Q.setValueAtTime(5, now);
         filter.frequency.setValueAtTime(600, now);
-        filter.frequency.exponentialRampToValueAtTime(1000, now + 0.7);
-        filter.frequency.exponentialRampToValueAtTime(400, now + 1.4);
+        filter.frequency.exponentialRampToValueAtTime(1000, now + 0.35);
+        filter.frequency.exponentialRampToValueAtTime(400, now + 0.75);
 
         // Gain node for envelope
         const gain = ctx.createGain();
@@ -54,11 +54,11 @@ class CoinSoundFX {
         gain.gain.linearRampToValueAtTime(0.3, now + 0.05);
         
         // Fast flutter effect representing the spins
-        for (let i = 0.05; i < 1.4; i += 0.1) {
+        for (let i = 0.05; i < 0.75; i += 0.08) {
             gain.gain.setValueAtTime(0.25, now + i);
-            gain.gain.exponentialRampToValueAtTime(0.08, now + i + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.08, now + i + 0.04);
         }
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
 
         // Connect nodes
         osc.connect(filter);
@@ -66,7 +66,7 @@ class CoinSoundFX {
         gain.connect(ctx.destination);
 
         osc.start(now);
-        osc.stop(now + 1.5);
+        osc.stop(now + 0.8);
     }
 
     playLanding(isHeads) {
@@ -111,6 +111,7 @@ class CoinSoundFX {
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const coin = document.getElementById('coin-element');
+    const coinWrapper = document.getElementById('coin-wrapper');
     const flipBtn = document.getElementById('flip-btn');
     const resetBtn = document.getElementById('reset-btn');
     const resultText = document.getElementById('result-text');
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 50/50 randomized outcome
         const outcome = Math.random() < 0.5 ? 'heads' : 'tails';
         
-        // Spin calculation
+        // Spin calculation (using rotateX for vertical spin)
         const isCurrentlyHeads = (currentRotation / 180) % 2 === 0;
         let targetRotation = currentRotation + 1440; // 4 full spins base
         
@@ -186,17 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         currentRotation = targetRotation;
 
-        // Apply visual rotation classes & transitions
+        // Apply visual rotation CSS variables and classes
+        coin.style.setProperty('--coin-rotation', `${currentRotation}deg`);
         coin.classList.add('spinning');
-        coin.style.transition = 'transform 1.6s cubic-bezier(0.175, 0.885, 0.31, 1)';
-        coin.style.transform = `rotateY(${currentRotation}deg)`;
+        coinWrapper.classList.add('tossing');
 
         // Handle animation end
         setTimeout(() => {
-            // Remove spinning styles to restore standard state behaviors (like hover scaling)
+            // Remove spinning & tossing styles to restore standard state behaviors (like hover scaling)
             coin.classList.remove('spinning');
-            coin.style.transition = 'transform 0.15s ease-out';
-            coin.style.transform = `scale(1) rotateY(${currentRotation}deg)`;
+            coinWrapper.classList.remove('tossing');
 
             // Update result text
             const formattedResult = outcome.charAt(0).toUpperCase() + outcome.slice(1);
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-enable flip interactions
             isSpinning = false;
             flipBtn.disabled = false;
-        }, 1600); // Must align with the transition duration (1.6s)
+        }, 800); // Must align with the transition & animation duration (0.8s)
     }
 
     // Keyboard support: Space/Enter on coin element

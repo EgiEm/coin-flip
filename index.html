@@ -24,92 +24,94 @@
         <main>
             <!-- 3D Coin Scene -->
             <div class="scene">
-                <div class="coin" id="coin-element" role="button" aria-label="Flip Coin" tabindex="0">
-                    <!-- Front Side (Heads) -->
-                    <div class="coin-side heads">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <radialGradient id="gold-grad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
-                                    <stop offset="0%" stop-color="#fff2a3" />
-                                    <stop offset="45%" stop-color="#ffd700" />
-                                    <stop offset="80%" stop-color="#c59b27" />
-                                    <stop offset="100%" stop-color="#805d04" />
-                                </radialGradient>
-                                <linearGradient id="gold-highlight" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
-                                    <stop offset="30%" stop-color="#ffffff" stop-opacity="0" />
-                                    <stop offset="70%" stop-color="#000000" stop-opacity="0" />
-                                    <stop offset="100%" stop-color="#000000" stop-opacity="0.4" />
-                                </linearGradient>
-                            </defs>
-                            <!-- Base Coin Circle -->
-                            <circle cx="100" cy="100" r="95" fill="url(#gold-grad)" stroke="#d4af37" stroke-width="2" />
-                            <circle cx="100" cy="100" r="95" fill="url(#gold-highlight)" />
-                            <circle cx="100" cy="100" r="88" fill="none" stroke="#ffe57f" stroke-width="1.5" stroke-dasharray="4,3" />
-                            <circle cx="100" cy="100" r="82" fill="none" stroke="#a67c00" stroke-width="1" />
-                            
-                            <!-- Heads Emblem: Crown -->
-                            <g transform="translate(0, -3)">
-                                <!-- Laurels -->
-                                <path d="M 45 125 C 35 105, 35 75, 55 55 C 57 53, 60 55, 59 57 C 49 75, 49 100, 60 115 Z" fill="#fff176" opacity="0.8" />
-                                <path d="M 155 125 C 165 105, 165 75, 145 55 C 143 53, 140 55, 141 57 C 151 75, 151 100, 140 115 Z" fill="#fff176" opacity="0.8" />
+                <div class="coin-wrapper" id="coin-wrapper">
+                    <div class="coin" id="coin-element" role="button" aria-label="Flip Coin" tabindex="0">
+                        <!-- Front Side (Heads) -->
+                        <div class="coin-side heads">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="gold-grad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+                                        <stop offset="0%" stop-color="#fff2a3" />
+                                        <stop offset="45%" stop-color="#ffd700" />
+                                        <stop offset="80%" stop-color="#c59b27" />
+                                        <stop offset="100%" stop-color="#805d04" />
+                                    </radialGradient>
+                                    <linearGradient id="gold-highlight" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+                                        <stop offset="30%" stop-color="#ffffff" stop-opacity="0" />
+                                        <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+                                        <stop offset="100%" stop-color="#000000" stop-opacity="0.4" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Base Coin Circle -->
+                                <circle cx="100" cy="100" r="95" fill="url(#gold-grad)" stroke="#d4af37" stroke-width="2" />
+                                <circle cx="100" cy="100" r="95" fill="url(#gold-highlight)" />
+                                <circle cx="100" cy="100" r="88" fill="none" stroke="#ffe57f" stroke-width="1.5" stroke-dasharray="4,3" />
+                                <circle cx="100" cy="100" r="82" fill="none" stroke="#a67c00" stroke-width="1" />
                                 
-                                <!-- Crown Path -->
-                                <path d="M 60 120 L 140 120 L 148 80 L 125 100 L 100 65 L 75 100 L 52 80 Z" fill="#ffe082" stroke="#805d04" stroke-width="2" stroke-linejoin="round" />
-                                <rect x="70" y="112" width="60" height="5" rx="2" fill="#d84315" />
-                                <circle cx="100" cy="65" r="5" fill="#d84315" />
-                                <circle cx="75" cy="100" r="3" fill="#00e676" />
-                                <circle cx="125" cy="100" r="3" fill="#00e676" />
-                                <circle cx="52" cy="80" r="4" fill="#29b6f6" />
-                                <circle cx="148" cy="80" r="4" fill="#29b6f6" />
-                            </g>
-                            
-                            <!-- Typography -->
-                            <path id="heads-text-path" d="M 30 100 A 70 70 0 0 1 170 100" fill="none" />
-                            <text fill="#5d4037" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" letter-spacing="4">
-                                <textPath href="#heads-text-path" startOffset="50%" text-anchor="middle">HEADS</textPath>
-                            </text>
-                            
-                            <path id="heads-bottom-path" d="M 170 100 A 70 70 0 0 1 30 100" fill="none" />
-                            <text fill="#8d6e63" font-family="'Outfit', sans-serif" font-weight="600" font-size="9" letter-spacing="2">
-                                <textPath href="#heads-bottom-path" startOffset="50%" text-anchor="middle">LIBERTY • 2026</textPath>
-                            </text>
-                        </svg>
-                    </div>
+                                <!-- Heads Emblem: Crown -->
+                                <g transform="translate(0, -3)">
+                                    <!-- Laurels -->
+                                    <path d="M 45 125 C 35 105, 35 75, 55 55 C 57 53, 60 55, 59 57 C 49 75, 49 100, 60 115 Z" fill="#fff176" opacity="0.8" />
+                                    <path d="M 155 125 C 165 105, 165 75, 145 55 C 143 53, 140 55, 141 57 C 151 75, 151 100, 140 115 Z" fill="#fff176" opacity="0.8" />
+                                    
+                                    <!-- Crown Path -->
+                                    <path d="M 60 120 L 140 120 L 148 80 L 125 100 L 100 65 L 75 100 L 52 80 Z" fill="#ffe082" stroke="#805d04" stroke-width="2" stroke-linejoin="round" />
+                                    <rect x="70" y="112" width="60" height="5" rx="2" fill="#d84315" />
+                                    <circle cx="100" cy="65" r="5" fill="#d84315" />
+                                    <circle cx="75" cy="100" r="3" fill="#00e676" />
+                                    <circle cx="125" cy="100" r="3" fill="#00e676" />
+                                    <circle cx="52" cy="80" r="4" fill="#29b6f6" />
+                                    <circle cx="148" cy="80" r="4" fill="#29b6f6" />
+                                </g>
+                                
+                                <!-- Typography -->
+                                <path id="heads-text-path" d="M 30 100 A 70 70 0 0 1 170 100" fill="none" />
+                                <text fill="#5d4037" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" letter-spacing="4">
+                                    <textPath href="#heads-text-path" startOffset="50%" text-anchor="middle">HEADS</textPath>
+                                </text>
+                                
+                                <path id="heads-bottom-path" d="M 170 100 A 70 70 0 0 1 30 100" fill="none" />
+                                <text fill="#8d6e63" font-family="'Outfit', sans-serif" font-weight="600" font-size="9" letter-spacing="2">
+                                    <textPath href="#heads-bottom-path" startOffset="50%" text-anchor="middle">LIBERTY • 2026</textPath>
+                                </text>
+                            </svg>
+                        </div>
 
-                    <!-- Back Side (Tails) -->
-                    <div class="coin-side tails">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Base Coin Circle -->
-                            <circle cx="100" cy="100" r="95" fill="url(#gold-grad)" stroke="#d4af37" stroke-width="2" />
-                            <circle cx="100" cy="100" r="95" fill="url(#gold-highlight)" />
-                            <circle cx="100" cy="100" r="88" fill="none" stroke="#ffe57f" stroke-width="1.5" stroke-dasharray="4,3" />
-                            <circle cx="100" cy="100" r="82" fill="none" stroke="#a67c00" stroke-width="1" />
-                            
-                            <!-- Tails Emblem: Eagle / Shield / Wreath -->
-                            <g transform="translate(0, -5)">
-                                <!-- Laurel Wreath base -->
-                                <path d="M 45 130 A 55 55 0 0 1 45 60" fill="none" stroke="#ffe082" stroke-width="3" stroke-linecap="round" opacity="0.8" />
-                                <path d="M 155 130 A 55 55 0 0 0 155 60" fill="none" stroke="#ffe082" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+                        <!-- Back Side (Tails) -->
+                        <div class="coin-side tails">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Base Coin Circle -->
+                                <circle cx="100" cy="100" r="95" fill="url(#gold-grad)" stroke="#d4af37" stroke-width="2" />
+                                <circle cx="100" cy="100" r="95" fill="url(#gold-highlight)" />
+                                <circle cx="100" cy="100" r="88" fill="none" stroke="#ffe57f" stroke-width="1.5" stroke-dasharray="4,3" />
+                                <circle cx="100" cy="100" r="82" fill="none" stroke="#a67c00" stroke-width="1" />
                                 
-                                <!-- Central Star -->
-                                <polygon points="100,58 104,70 117,70 106,78 110,91 100,83 90,91 94,78 83,70 96,70" fill="#fff59d" stroke="#805d04" stroke-width="1.5" />
+                                <!-- Tails Emblem: Eagle / Shield / Wreath -->
+                                <g transform="translate(0, -5)">
+                                    <!-- Laurel Wreath base -->
+                                    <path d="M 45 130 A 55 55 0 0 1 45 60" fill="none" stroke="#ffe082" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+                                    <path d="M 155 130 A 55 55 0 0 0 155 60" fill="none" stroke="#ffe082" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+                                    
+                                    <!-- Central Star -->
+                                    <polygon points="100,58 104,70 117,70 106,78 110,91 100,83 90,91 94,78 83,70 96,70" fill="#fff59d" stroke="#805d04" stroke-width="1.5" />
+                                    
+                                    <!-- Numeric Value 1 -->
+                                    <text x="100" y="125" fill="#5d4037" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle">1</text>
+                                </g>
                                 
-                                <!-- Numeric Value 1 -->
-                                <text x="100" y="125" fill="#5d4037" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="52" text-anchor="middle">1</text>
-                            </g>
-                            
-                            <!-- Typography -->
-                            <path id="tails-text-path" d="M 30 100 A 70 70 0 0 1 170 100" fill="none" />
-                            <text fill="#5d4037" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" letter-spacing="4">
-                                <textPath href="#tails-text-path" startOffset="50%" text-anchor="middle">TAILS</textPath>
-                            </text>
-                            
-                            <path id="tails-bottom-path" d="M 170 100 A 70 70 0 0 1 30 100" fill="none" />
-                            <text fill="#8d6e63" font-family="'Outfit', sans-serif" font-weight="600" font-size="8" letter-spacing="2.5">
-                                <textPath href="#tails-bottom-path" startOffset="50%" text-anchor="middle">E PLURIBUS UNUM</textPath>
-                            </text>
-                        </svg>
+                                <!-- Typography -->
+                                <path id="tails-text-path" d="M 30 100 A 70 70 0 0 1 170 100" fill="none" />
+                                <text fill="#5d4037" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" letter-spacing="4">
+                                    <textPath href="#tails-text-path" startOffset="50%" text-anchor="middle">TAILS</textPath>
+                                </text>
+                                
+                                <path id="tails-bottom-path" d="M 170 100 A 70 70 0 0 1 30 100" fill="none" />
+                                <text fill="#8d6e63" font-family="'Outfit', sans-serif" font-weight="600" font-size="8" letter-spacing="2.5">
+                                    <textPath href="#tails-bottom-path" startOffset="50%" text-anchor="middle">E PLURIBUS UNUM</textPath>
+                                </text>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
